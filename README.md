@@ -12,7 +12,7 @@ Welcome to the Pet Tracker App! This app is built using React Native and aims to
 
     npm install
 
-3. Start the development server on mobile
+3. Start the development server on mobile and scan the QR code
 
     npx expo start 
     or 
@@ -36,4 +36,5 @@ Welcome to the Pet Tracker App! This app is built using React Native and aims to
 ## Tech Stack
 - React Native
 - Firebase
+- Expo CLI
 
