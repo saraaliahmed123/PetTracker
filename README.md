@@ -6,7 +6,7 @@ Welcome to the Pet Tracker App! This app is built using React Native and aims to
 
 1. Clone the repository to your local machine
 
-    git clone 
+    git clone https://github.com/saraaliahmed123/PetTracker.git
 
 2. Install the required dependencies
 
