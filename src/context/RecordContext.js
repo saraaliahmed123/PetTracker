@@ -88,7 +88,7 @@ export const RecordProvider = ({children}) => {
     async function getRecentRecords() {
         const record = []
 
-        const q = query(collection(db, "Record"), where("userId", "==", currentUser.providerData[0].uid), orderBy("date", "desc"), limit(3));
+        const q = query(collection(db, "Record"), where("userId", "==", currentUser.providerData[0].uid), orderBy("date", "desc"), limit(4));
 
         const querySnapshot = await getDocs(q);
         for await(const doc of querySnapshot.docs) {

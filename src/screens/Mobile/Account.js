@@ -30,8 +30,6 @@ const Account = ({navigation}) => {
     if (animals)
         {
       return animals.map((item, key) => {
-       // console.log(key)
-
         return(
           <View style={styles.card} key={key}>
             <TouchableOpacity
