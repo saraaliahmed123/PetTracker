@@ -57,7 +57,7 @@ export const AnimalProvider = ({children}) => {
         if (currentUser)
         {
 
-        const q = query(collection(db, "Animal"), where("userId", "==", currentUser.providerData[0].uid));
+        const q = query(collection(db, "Animal"), where("userId", "==",  currentUser.uid));
 
         const querySnapshot = await getDocs(q);
         for await(const doc of querySnapshot.docs) {
@@ -74,23 +74,22 @@ export const AnimalProvider = ({children}) => {
     }
 
     async function getAnimalByAnimalId(animalId) {
-        const animal = []
+        let animal = []
 
         if (currentUser)
         {
 
-        const q = query(collection(db, "Animal"), where("userId", "==", currentUser.providerData[0].uid), where(documentId(), "==", animalId));
+            const q = query(collection(db, "Animal"), where("userId", "==",  currentUser.uid), where(documentId(), "==", animalId));
 
-        const querySnapshot = await getDocs(q);
-        for await(const doc of querySnapshot.docs) {
-        // doc.data() is never undefined for query doc snapshots
-            const date = doc.data()
-            date["id"] = doc.id
-            animal.push(date);
-        };
+            const querySnapshot = await getDocs(q);
+            for await(const doc of querySnapshot.docs) {
+                const date = doc.data()
+                date["id"] = doc.id
+
+                animal = date
+            };
 
         }
-       console.log(animal)
        return animal
     }
 

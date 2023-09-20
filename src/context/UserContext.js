@@ -18,7 +18,7 @@ export const UserProvider = ({children}) => {
         const unsub = onAuthStateChanged(auth, (here) => {
             if (here) {
                 try{
-                    setCurrentUser(here);
+                    setCurrentUser(here.providerData[0]);
                 }
                 catch{
 
@@ -43,7 +43,7 @@ export const UserProvider = ({children}) => {
                 displayName: name
             }).then(() => {
                 const user = userCredential.user;
-                setCurrentUser(user)
+                setCurrentUser(user.providerData[0])
             // Profile updated!
             // ...
             }).catch((error) => {
@@ -78,7 +78,7 @@ export const UserProvider = ({children}) => {
         try{
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-            setCurrentUser(user); // Update the currentUser state
+            setCurrentUser(user.providerData[0]); 
 
         }
         catch(e){

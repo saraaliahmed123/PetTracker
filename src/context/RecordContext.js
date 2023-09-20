@@ -88,7 +88,7 @@ export const RecordProvider = ({children}) => {
     async function getRecentRecords() {
         const record = []
 
-        const q = query(collection(db, "Record"), where("userId", "==", currentUser.providerData[0].uid), orderBy("date", "desc"), limit(4));
+        const q = query(collection(db, "Record"), where("userId", "==", currentUser.uid), orderBy("date", "desc"), limit(4));
 
         const querySnapshot = await getDocs(q);
         for await(const doc of querySnapshot.docs) {
@@ -106,7 +106,7 @@ export const RecordProvider = ({children}) => {
     async function getRecentExepnses() {
         const record = []
         const expense = collection(db, "Record");
-        const q = query(expense, where("typeId", "==", "Expense"), where("userId", "==", currentUser.providerData[0].uid), orderBy("date", "desc"), limit(3));
+        const q = query(expense, where("typeId", "==", "Expense"), where("userId", "==", currentUser.uid), orderBy("date", "desc"), limit(3));
         const querySnapshot = await getDocs(q);
         for await(const doc of querySnapshot.docs) {
             // doc.data() is never undefined for query doc snapshots
@@ -122,7 +122,7 @@ export const RecordProvider = ({children}) => {
     async function getAnimalsWeights() {
         const record = []
         const weight = collection(db, "Record");
-        const q = query(weight, where("typeId", "==", "Weight"), where("userId", "==", currentUser.providerData[0].uid));
+        const q = query(weight, where("typeId", "==", "Weight"), where("userId", "==", currentUser.uid));
         const querySnapshot = await getDocs(q);
         for await(const doc of querySnapshot.docs) {
             // doc.data() is never undefined for query doc snapshots
@@ -141,7 +141,7 @@ export const RecordProvider = ({children}) => {
         const item = []
         let count = 0
         const weight = collection(db, "Record");
-        const q = query(weight, where("userId", "==", currentUser.providerData[0].uid));
+        const q = query(weight, where("userId", "==", currentUser.uid));
         const querySnapshot = await getDocs(q);
         for await(const doc of querySnapshot.docs) {
             // doc.data() is never undefined for query doc snapshots
