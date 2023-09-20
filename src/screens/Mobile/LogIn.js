@@ -9,7 +9,20 @@ const LogIn = ({navigation, logInPage}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const { logIn, currentUser } = useUserContext()
+  const { logIn, currentUser, setCurrentUser } = useUserContext()
+
+  useEffect(() => {
+     if (currentUser && Platform.OS !== 'web'){
+        console.log(currentUser)
+        navigation.navigate('Main')
+
+      }
+      else if (currentUser && Platform.OS == 'web'){
+        console.log(currentUser)
+        logInPage()
+      }
+  }, [currentUser]); // This will run whenever currentUser changes
+
 
   let platform = Platform.OS
 
@@ -41,28 +54,14 @@ const LogIn = ({navigation, logInPage}) => {
 
           <View style={styles.buttonsView}>
             
-            <TouchableOpacity onPress={async () => {
+            <TouchableOpacity 
+
+            
+            onPress={async () => {
               if (email && password)
               {
-                
-                try{
-                  await logIn(email, password)
 
-                }catch(e){
-
-                }
-
-                if (currentUser && Platform.OS !== 'web'){
-                  console.log(currentUser)
-                  navigation.navigate('Main')
-
-                }
-                else if (currentUser && Platform.OS == 'web'){
-                  console.log(currentUser)
-                  logInPage()
-                }
-              
-                
+                await logIn(email, password)
               }
               }} style={styles.buttonLogIn}>
               <Text style={styles.Textcolour} >Login</Text>

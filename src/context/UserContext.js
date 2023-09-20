@@ -12,8 +12,23 @@ export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState()
 
     useEffect(() => {
-        getUser();
-        return () => getUser()
+        // getUser();
+        // return () => getUser()
+        const auth = getAuth();
+        const unsub = onAuthStateChanged(auth, (here) => {
+            if (here) {
+                try{
+                    setCurrentUser(here);
+                }
+                catch{
+
+                }
+            } else {
+                console.log("user doesnt exist");
+            }
+
+        });
+        return unsub;
     }, [])
 
     async function signUp(email, password, name) {
@@ -60,22 +75,26 @@ export const UserProvider = ({children}) => {
 
     async function logIn(email, password) {
         const auth = getAuth();
-        const user = await signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
+        try{
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-         console.log(user)
-        //  user = {email: "fbwjefl", password: "wehfpwoe"}
-          setCurrentUser(user)
-        //  return user
-            // ...
-        })
-        .catch((error) => {
+            setCurrentUser(user); // Update the currentUser state
+
+        }
+        catch(e){
             const errorCode = error.code;
             const errorMessage = error.message;
-        });
-        //console.log(user.providerData)
-    //    return user
+        }
+        // const user = await signInWithEmailAndPassword(auth, email, password)
+        // .then((userCredential) => {
+        //     const user = userCredential.user;
+        //     setCurrentUser(user)
+        //     return user
+        // })
+        // .catch((error) => {
+        //     const errorCode = error.code;
+        //     const errorMessage = error.message;
+        // });
     }
 
     async function getUser() {
@@ -112,7 +131,8 @@ export const UserProvider = ({children}) => {
             logIn,
             currentUser,
             getUser,
-            signOutUser
+            signOutUser,
+            setCurrentUser
         }}
         >
         {children}
