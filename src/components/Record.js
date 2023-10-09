@@ -98,6 +98,8 @@ const Record = ({navigation, stateChange, childToParent, add, back, typeWeb}) =>
 }
 
 
+
+
   return (
     <ScrollView>
     <View style={styles.page}>
@@ -144,7 +146,8 @@ const Record = ({navigation, stateChange, childToParent, add, back, typeWeb}) =>
               }
               else
               {
-                addRecord(date.toISOString(), animal.id, false, date, type.id, currentUser.providerData[0].uid, values)
+                console.log(animal.id)
+                addRecord(date.toISOString(), animal.id, false, date, type.id, currentUser.uid, values)
                 values = []
                 dismissAll()
               }

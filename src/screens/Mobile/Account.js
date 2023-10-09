@@ -94,7 +94,7 @@ const Account = ({navigation}) => {
             <Text style={styles.brandtxt}>Name:</Text>
           </View>
           <View  style={platform === "web" ? styles.brandInputViewWeb : styles.brandInputView}>
-          <Text style={styles.brandInput}>{currentUser?.providerData[0].displayName}</Text>
+          <Text style={styles.brandInput}>{currentUser?.displayName}</Text>
           </View>
         </View>
 
@@ -103,12 +103,13 @@ const Account = ({navigation}) => {
             <Text style={styles.brandtxt}>Email:</Text>
           </View>
           <View  style={platform === "web" ? styles.brandInputViewWeb : styles.brandInputView}>
-          <Text style={styles.brandInput}>{currentUser?.providerData[0].uid}</Text>
+          <Text style={styles.brandInput}>{currentUser?.uid}</Text>
           </View>
         </View>
 
   
         </View>
+
         <TouchableOpacity onPress={() => {
               signOutUser().then(() => {
                 navigation.navigate("FirstPage")

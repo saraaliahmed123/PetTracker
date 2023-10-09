@@ -19,7 +19,12 @@ const Add = ({onPress}) => {
             onPress
             }
         >
-            <AntDesign name="pluscircle" size={Platform.OS === 'web' ? 30 : 48} color="#51759e" />
+            <AntDesign name="pluscircle" size={Platform.OS === 'web' ? 30 : 48} color="#7494B9" />
+            {/* <Image
+            style={styles.tinyLogoImage}
+              source={{
+                uri: item.image,
+              }}/> */}
         </TouchableOpacity>
         </View>
     )

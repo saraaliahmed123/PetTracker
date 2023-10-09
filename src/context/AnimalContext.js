@@ -48,7 +48,7 @@ export const AnimalProvider = ({children}) => {
             console.log("animal")
         })
 
-    return image 
+        return image 
     }
 
     async function getAnimalsByUserId() {
@@ -64,7 +64,7 @@ export const AnimalProvider = ({children}) => {
         // doc.data() is never undefined for query doc snapshots
             const date = doc.data()
             date["id"] = doc.id
-            date["image"] = ""
+            // date["image"] = ""
             //await getAnimalImage(date["id"])
             animal.push(date);
         };
