@@ -32,6 +32,7 @@ Welcome to the Pet Tracker App! This app is built using React Native and aims to
 - User registration and login
 - Pet profile creation and management
 - Record and track health information (e.g. vaccinations, medication)
+- Access details on web for a multi-platform experience
 
 ## Tech Stack
 - React Native
